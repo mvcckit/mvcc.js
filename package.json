@@ -1,0 +1,14 @@
+{
+  "name": "mvcc-js",
+  "description": "The JavaScript used for internal Moraine Valley Community College web applications.",
+  "version": "0.1.0",
+  "author": "Eric Harms",
+  "repository": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.11.0"
+  },
+  "license": "MIT"
+}
