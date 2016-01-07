@@ -32,6 +32,7 @@ The `com` module contains functions to create and manage components.
 The `http` module contains members for making HTTP requests.
 
 * [get](http/get.md)
+* [include](http/include.md)
 * [post](http/post.md)
 * [request](http/request.md)
 
@@ -45,7 +46,3 @@ The `route` module contains functions to create and manage routes.
 * [listen](route/listen.md)
 * [map](route/map.md)
 * [unmap](route/unmap.md)
-
-## Directives
-
-* [repeat](directive/repeat.md)

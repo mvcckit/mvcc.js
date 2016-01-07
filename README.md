@@ -5,20 +5,19 @@
 The javascript used for internal Moraine Valley Community College web applications. It is still under development.
 
 * [API Documentation](docs/api/api.md)
-* [WatchJS Documentiation](https://github.com/melanke/Watch.JS)
 * [Change Log](CHANGELOG.md)
-
-## Building mvcc.js
-
-Once you have your environment setup, run:
-
-    grunt
 
 ## Including mvcc.js
 
 Paste this snippet before the closing `body` tag:
 
 	<script src="https://cdn.rawgit.com/mvcckit/mvcc.js/0.0.1/builds/mvcc.min.js"></script>
+
+## Building mvcc.js
+
+Once you have your environment setup, run:
+
+    grunt
 
 ## A Quick Example
 
