@@ -1,10 +1,10 @@
-# mvcc.html.include
+# mvcc.http.include
 
 The `include` function load external content in a container.
 
 ## Usage
 
-mvcc.util.include(url, selector, [success], [failure]);
+mvcc.http.include(url, selector, [success], [failure]);
 
 ### Arguments
 
