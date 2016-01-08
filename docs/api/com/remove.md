@@ -10,4 +10,4 @@ mvcc.com.remove(name);
 
 | Parameter    | Type       | Details                            |
 | ------------ | ---------- | ---------------------------------- |
-| name         | `String`   | The directive name.                |
+| name         | `String`   | The component name.                |

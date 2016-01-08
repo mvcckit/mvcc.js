@@ -428,7 +428,7 @@ return {
 	remove: remove,
 	render: render,
 	renderAll: renderAll,
-	items: _components
+	item: _components
 };
 
 })();
@@ -568,7 +568,7 @@ return {
 	call: call,
    listen: listen,
    ignore: ignore,
-   items: _routes
+   item: _routes
 };
 
 })();

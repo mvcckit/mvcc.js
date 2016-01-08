@@ -11,7 +11,9 @@ mvcc.route.create(name, fn);
 | Parameter    | Type       | Details                            |
 | ------------ | ---------- | ---------------------------------- |
 | fn           | `Function` | The callback function.             |
-| name         | `String`   | The directive name.                |
+| name         | `String`   | The component name.                |
+
+> The component name should not contain any spaces.
 
 ### Properties
 

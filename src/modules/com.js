@@ -21,7 +21,7 @@ var _components = {};
  *
  * @param {string} name
  *
- *     The directive name.
+ *     The component name.
  *
  * @returns {string}
  *
@@ -45,7 +45,7 @@ var compiler = function(name) {	return '[data-' + name + '],[' + name + '],' + n
  *
  * @param {string} name
  *
- *     The directive name.
+ *     The component name.
  */
 
 var create = function(fn, name) { 
@@ -65,7 +65,7 @@ var create = function(fn, name) {
  *
  * @param {string} name
  *
- *     The directive name. 
+ *     The component name. 
  */
 
 var remove = function(name) { 
@@ -97,7 +97,7 @@ var clear = function() { _components = {}; };
  *
  * @param {string} name
  *
- *     The directive name.
+ *     The component name.
  */
 
 var render = function(name) { 
