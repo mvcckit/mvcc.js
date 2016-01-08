@@ -365,10 +365,6 @@ var render = function(name) {
 		 * The init property is called before the component is rendered. 
 		 *
 		 * @name component.init
-		 *
-		 * @property {function} component.init
-		 *
-		 * @returns {string}
 		 */
 
 		if (mvcc.isFunction(component.init)) { 
@@ -389,6 +385,18 @@ var render = function(name) {
 
 		if (mvcc.isFunction(component.draw)) { 
 			el.innerHTML = mvcc.template(component.draw(el), component); 
+		}
+
+		/**
+		 * The init property is called after the component is rendered. 
+		 *
+		 * @name component.done
+		 *
+		 * @property {function} component.done
+		 */
+
+		if (mvcc.isFunction(component.done)) { 
+			component.done(el); 
 		}
 
 	}
@@ -419,7 +427,8 @@ return {
 	create: create,
 	remove: remove,
 	render: render,
-	renderAll: renderAll
+	renderAll: renderAll,
+	items: _components
 };
 
 })();
@@ -558,7 +567,8 @@ return {
 	unmap: unmap,
 	call: call,
    listen: listen,
-   ignore: ignore
+   ignore: ignore,
+   items: _routes
 };
 
 })();

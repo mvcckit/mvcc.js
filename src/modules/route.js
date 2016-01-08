@@ -133,7 +133,8 @@ return {
 	unmap: unmap,
 	call: call,
    listen: listen,
-   ignore: ignore
+   ignore: ignore,
+   items: _routes
 };
 
 })();

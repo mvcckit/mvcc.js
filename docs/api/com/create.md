@@ -15,7 +15,7 @@ mvcc.route.create(name, fn);
 
 ### Properties
 
-The `fn` function has two reserved properties. 
+The `fn` function has three reserved properties. 
 
 | Property     | Type       | Details                                  |
 | ------------ | ---------- | ---------------------------------------- |

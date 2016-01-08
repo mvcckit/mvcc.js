@@ -178,7 +178,8 @@ return {
 	create: create,
 	remove: remove,
 	render: render,
-	renderAll: renderAll
+	renderAll: renderAll,
+	items: _components
 };
 
 })();

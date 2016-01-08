@@ -23,6 +23,7 @@ The `com` module contains functions to create and manage components.
 
 * [clear](com/clear.md)
 * [create](com/create.md)
+* [item](com/item.md)
 * [remove](com/remove.md)
 * [render](com/render.md)
 * [renderAll](com/renderAll.md)
@@ -43,6 +44,7 @@ The `route` module contains functions to create and manage routes.
 * [call](route/call.md)
 * [clear](route/clear.md)
 * [ignore](route/ignore.md)
+* [item](routes/item.md)
 * [listen](route/listen.md)
 * [map](route/map.md)
 * [unmap](route/unmap.md)
