@@ -179,7 +179,7 @@ return {
 	remove: remove,
 	render: render,
 	renderAll: renderAll,
-	items: _components
+	item: _components
 };
 
 })();

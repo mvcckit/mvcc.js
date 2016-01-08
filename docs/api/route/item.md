@@ -4,4 +4,4 @@ The `item` collection contains all mapped routes.
 
 ## Usage
 
-mvcc.route.item
+mvcc.route.item[name]
