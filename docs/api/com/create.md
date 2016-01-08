@@ -20,7 +20,8 @@ The `fn` function has two reserved properties.
 | Property     | Type       | Details                                  |
 | ------------ | ---------- | ---------------------------------------- |
 | init         | `Function` | Called before the component is rendered. | 
-| draw         | `Function` | Called when the component is rendered.   |
+| draw         | `Function` | Called when the component is rendering.  |
+| done         | `Function` | Called after the component is rendered.  |
 
 > The `HTMLElement` is passed in an argument to each of these functions.
 
