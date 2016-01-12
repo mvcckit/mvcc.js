@@ -139,7 +139,7 @@ var render = function(name) {
 		}
 
 		/**
-		 * The init property is called after the component is rendered. 
+		 * The done property is called after the component is rendered. 
 		 *
 		 * @name component.done
 		 *
@@ -151,7 +151,6 @@ var render = function(name) {
 		}
 
 	}
-
 };
 
 /* 
