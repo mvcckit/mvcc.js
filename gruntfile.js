@@ -9,9 +9,8 @@ module.exports = function(grunt) {
 					'src/modules/com.js',	
 					'src/modules/route.js',	
 					'src/modules/http.js',						
-					'src/modules/util.js',							
 				    'src/mvcc.suffix.js',
-
+				    'src/directives/*.js',
 				    	
 				],
 				dest: 'builds/mvcc.full.js'

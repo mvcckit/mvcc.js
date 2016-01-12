@@ -270,7 +270,7 @@ var _components = {};
  *
  * @param {string} name
  *
- *     The directive name.
+ *     The component name.
  *
  * @returns {string}
  *
@@ -294,7 +294,7 @@ var compiler = function(name) {	return '[data-' + name + '],[' + name + '],' + n
  *
  * @param {string} name
  *
- *     The directive name.
+ *     The component name.
  */
 
 var create = function(fn, name) { 
@@ -314,7 +314,7 @@ var create = function(fn, name) {
  *
  * @param {string} name
  *
- *     The directive name. 
+ *     The component name. 
  */
 
 var remove = function(name) { 
@@ -346,7 +346,7 @@ var clear = function() { _components = {}; };
  *
  * @param {string} name
  *
- *     The directive name.
+ *     The component name.
  */
 
 var render = function(name) { 
@@ -388,7 +388,7 @@ var render = function(name) {
 		}
 
 		/**
-		 * The init property is called after the component is rendered. 
+		 * The done property is called after the component is rendered. 
 		 *
 		 * @name component.done
 		 *
@@ -400,7 +400,6 @@ var render = function(name) {
 		}
 
 	}
-
 };
 
 /* 
@@ -760,3 +759,32 @@ mvcc.route.listen();
  */
 
 })(mvcc || (mvcc = {}));
+/* 
+   #mv-repeat
+   ========================================================================== */
+
+/**
+ * The `mvcc-repeat` directive instantiates a template once per item from a collection.
+ *
+ * @name mv-repeat
+ * @type attribute
+ * @attr {string}
+ *
+ *     The json file.
+ */
+
+mvcc.com.create({
+    init: function (el) {
+        var that = this;
+        mvcc.http.get(el.getAttribute('mv-repeat')).then(function (data) {
+            that.load(el, JSON.parse(data));
+        });
+    },
+    load: function (el, data) {
+        var target = '', template = el.innerHTML;
+        for (var prop in data) {
+            target += mvcc.template(template, data[prop]);
+        }
+        el.innerHTML = target;
+    }
+}, 'mv-repeat');
