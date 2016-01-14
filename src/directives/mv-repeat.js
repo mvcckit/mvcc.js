@@ -25,6 +25,11 @@ mvcc.com.create({
             target += mvcc.template(template, data[prop]);
         }
         el.innerHTML = target;
-        el.removeAttribute('mv-cloak');
+        //
+        // Fix Chrome Bug
+        //
+         setTimeout(function() {
+            el.removeAttribute('mv-cloak');
+         }, 500);
     }
 }, 'mv-repeat');
