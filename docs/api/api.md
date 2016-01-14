@@ -48,3 +48,8 @@ The `route` module contains functions to create and manage routes.
 * [listen](route/listen.md)
 * [map](route/map.md)
 * [unmap](route/unmap.md)
+
+## Components
+
+* [mv-cloak](directives/mv-cloak.md)
+* [mv-repeat](directives/mv-repeat.md)
