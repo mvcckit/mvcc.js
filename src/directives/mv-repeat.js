@@ -25,7 +25,6 @@ mvcc.com.create({
             target += mvcc.template(template, data[prop]);
         }
         el.innerHTML = target;
-        el.style.background='green';
         el.removeAttribute('mv-cloak');
     }
 }, 'mv-repeat');
