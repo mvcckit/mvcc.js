@@ -28,7 +28,7 @@ var _routes = {};
  *     The callback function.
  */
 
-var map = function(name, fn) { _routes[name] = fn; };
+var map = function(name, fn) { _routes[name.toLowerCase] = fn; };
 
 /* 
    #unmap
@@ -45,7 +45,7 @@ var map = function(name, fn) { _routes[name] = fn; };
  */
 
 var unmap = function(name) { 
-   if (mvcc.isDefined(_routes[name])) {
+   if (mvcc.isDefined(_routes[name.toLowerCase])) {
       delete _routes[name]; 
    }
 };
@@ -77,8 +77,8 @@ var clear = function() { _routes = {}; };
  */
 
 var call = function(name) { 
-   if (mvcc.isDefined(_routes[name])) {
-      _routes[name](); 
+   if (mvcc.isDefined(_routes[name.toLowerCase])) {
+      _routes[name.toLowerCase](); 
    }
 };
 
