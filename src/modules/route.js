@@ -45,7 +45,7 @@ var map = function(name, fn) { _routes[name.toLowerCase] = fn; };
  */
 
 var unmap = function(name) { 
-   if (mvcc.isDefined(_routes[name.toLowerCase])) {
+   if (mvcc.isDefined(_routes[name])) {
       delete _routes[name]; 
    }
 };
