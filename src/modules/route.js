@@ -28,7 +28,7 @@ var _routes = {};
  *     The callback function.
  */
 
-var map = function(name, fn) { _routes[name.toLowerCase] = fn; };
+var map = function(name, fn) { _routes[name] = fn; };
 
 /* 
    #unmap
@@ -77,8 +77,11 @@ var clear = function() { _routes = {}; };
  */
 
 var call = function(name) { 
-   if (mvcc.isDefined(_routes[name.toLowerCase])) {
-      _routes[name.toLowerCase](); 
+   /**
+    * Ignore case when doing the match.
+    */
+   if (mvcc.isDefined(_routes[name.toLowerCase()])) {
+      _routes[name.toLowerCase()](); 
    }
 };
 
