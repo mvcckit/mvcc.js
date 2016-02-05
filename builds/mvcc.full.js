@@ -268,10 +268,13 @@ var query = (function() {
 //
 // TRAVERSING
 //
-
+query.prototype.test= function() {
+	alert('good');
+};
 /* 
    #each
    ========================================================================== */
+
 query.prototype.each = function(cb) {
 	Array.prototype.forEach.call(this.els, function(el, index) {
 		cb(el, index);
@@ -336,6 +339,7 @@ query.prototype.parent = function() {
    ========================================================================== */
 
 query.prototype.html = function(value) {
+
 	if(value) {
 		this.each(function(el) {
 			el.innerHTML = value;
@@ -701,7 +705,7 @@ var render = function(name) {
 
 	for(var index = 0, length = els.length; index < length; index++) {
 
-		var el = mvcc.query(els[index]);
+		var el = new mvcc.query(els[index]);
 
 		/**
 		 * The init property is called before the component is rendered. 
@@ -1121,16 +1125,16 @@ mvcc.route.listen();
 mvcc.com.create({
     init: function (el) {
         var that = this;
-        mvcc.http.get(el.getAttribute('mv-repeat')).then(function (data) {
+        mvcc.http.get(el.attr('mv-repeat')).then(function (data) {
             that.load(el, JSON.parse(data));
         });
     },
     load: function (el, data) {
-        var target = '', template = el.innerHTML;
+        var target = '', template = el.html();
         for (var prop in data) {
             target += mvcc.template(template, data[prop]);
         }
         el.innerHTML = target;
-        el.removeAttribute('mv-cloak');
+        el.removeAttr('mv-cloak');
     }
 }, 'mv-repeat');

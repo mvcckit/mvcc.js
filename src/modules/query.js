@@ -19,10 +19,13 @@ var query = (function() {
 //
 // TRAVERSING
 //
-
+query.prototype.test= function() {
+	alert('good');
+};
 /* 
    #each
    ========================================================================== */
+
 query.prototype.each = function(cb) {
 	Array.prototype.forEach.call(this.els, function(el, index) {
 		cb(el, index);
@@ -87,6 +90,7 @@ query.prototype.parent = function() {
    ========================================================================== */
 
 query.prototype.html = function(value) {
+
 	if(value) {
 		this.each(function(el) {
 			el.innerHTML = value;

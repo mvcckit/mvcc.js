@@ -1,0 +1,19 @@
+<html>
+	<body>
+		<app-test>aaa</app-test>
+
+		<script src="../builds/mvcc.full.js"></script>
+		<script>
+			mvcc.com.create({
+				draw: function(el) {
+					el.on('click', function() {
+						alert('good');
+					});
+					return "123" + el.html();
+				}
+			}, 'app-test');
+
+			mvcc.com.renderAll();
+		</script>
+	</body>
+</html>
