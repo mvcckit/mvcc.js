@@ -110,7 +110,7 @@ var render = function(name) {
 
 	for(var index = 0, length = els.length; index < length; index++) {
 
-		var el = els[index];
+		var el = mvcc.query(els[index]);
 
 		/**
 		 * The init property is called before the component is rendered. 
@@ -135,7 +135,7 @@ var render = function(name) {
 		 */
 
 		if (mvcc.isFunction(component.draw)) { 
-			el.innerHTML = mvcc.template(component.draw(el), component); 
+			el.html(mvcc.template(component.draw(el), component)); 
 		}
 
 		/**

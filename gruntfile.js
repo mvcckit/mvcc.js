@@ -5,7 +5,8 @@ module.exports = function(grunt) {
 				src: [
 					'src/mvcc.banner.js',
 					'src/mvcc.prefix.js',
-					'src/modules/core.js',					
+					'src/modules/core.js',	
+					'src/modules/query.js',				
 					'src/modules/com.js',	
 					'src/modules/route.js',	
 					'src/modules/http.js',						
