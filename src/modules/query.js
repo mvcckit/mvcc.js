@@ -19,9 +19,7 @@ var query = (function() {
 //
 // TRAVERSING
 //
-query.prototype.test= function() {
-	alert('good');
-};
+
 /* 
    #each
    ========================================================================== */

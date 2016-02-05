@@ -268,9 +268,7 @@ var query = (function() {
 //
 // TRAVERSING
 //
-query.prototype.test= function() {
-	alert('good');
-};
+
 /* 
    #each
    ========================================================================== */
@@ -1134,7 +1132,7 @@ mvcc.com.create({
         for (var prop in data) {
             target += mvcc.template(template, data[prop]);
         }
-        el.innerHTML = target;
+        el.html(target);
         el.removeAttr('mv-cloak');
     }
 }, 'mv-repeat');

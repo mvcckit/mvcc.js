@@ -28,6 +28,12 @@ The `com` module contains functions to create and manage components.
 * [render](com/render.md)
 * [renderAll](com/renderAll.md)
 
+### Query Module
+
+The `query` module provides a jQuery-like wrapper class.
+
+* [query](query/query.md)
+
 ### Http Module
 
 The `http` module contains members for making HTTP requests.
