@@ -25,5 +25,5 @@ The `fn` function has three reserved properties.
 | draw         | `Function` | Called when the component is rendering.  |
 | done         | `Function` | Called after the component is rendered.  |
 
-> The `HTMLElement` is passed in an argument to each of these functions.
+> The  `mvcc.query` wrapped element is passed in an argument to each.
 

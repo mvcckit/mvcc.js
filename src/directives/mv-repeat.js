@@ -15,16 +15,16 @@
 mvcc.com.create({
     init: function (el) {
         var that = this;
-        mvcc.http.get(el.attr('mv-repeat')).then(function (data) {
+        mvcc.http.get(el.getAttribute('mv-repeat')).then(function (data) {
             that.load(el, JSON.parse(data));
         });
     },
     load: function (el, data) {
-        var target = '', template = el.html();
+        var target = '', template = el.innerHTML;
         for (var prop in data) {
             target += mvcc.template(template, data[prop]);
         }
-        el.html(target);
-        el.removeAttr('mv-cloak');
+        el.innerHTML = target;
+        el.removeAttribute('mv-cloak');
     }
 }, 'mv-repeat');

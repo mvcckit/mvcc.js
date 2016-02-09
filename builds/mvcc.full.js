@@ -188,6 +188,26 @@ mvcc.isDefined = function(value) { return typeof value !== 'undefined'; };
 mvcc.isUndefined = function(value) { return typeof value === 'undefined'; };
 
 /* 
+   #isPath
+   ========================================================================== */
+
+/**
+ * The `isPath` function determines if the reference is a route path.
+ *
+ * @name mvcc.isPath
+ *
+ * @param {*} value
+ *
+ *     The reference to check.
+ *
+ * @returns {boolean} 
+ *
+ *     The function returns true if the `value` is a route path.
+ */
+
+mvcc.isPath = function(value) { return value.subString(0, 2) == "#/"; };
+
+/* 
    #extend
    ========================================================================== */
 
@@ -247,350 +267,6 @@ mvcc.template = function(content, values) {
       }, values);
    });  
 };
-/* ==========================================================================
-   #query
-   ========================================================================== */
-
-/**
- * The query class wraps elements in a light dom manipulation helper. 
- */
-
-var query = (function() {
-	function query(selector, context) {
-		if (context === void 0) {
-			context = document;
-		}
-		this.els = (selector.substring) ? context.querySelectorAll(selector) : [selector];
-	}
-	return query;
-})();
-
-//
-// TRAVERSING
-//
-
-/* 
-   #each
-   ========================================================================== */
-
-query.prototype.each = function(cb) {
-	Array.prototype.forEach.call(this.els, function(el, index) {
-		cb(el, index);
-	});
-	return this;
-};
-
-/* 
-   #eq
-   ========================================================================== */
-
-query.prototype.eq = function(index) {
-	return new query(this.els[index]);
-};
-
-/* 
-   #first
-   ========================================================================== */
-
-query.prototype.first = function(selector) {
-	return new query(this.els[0]);
-};
-
-/* 
-   #last
-   ========================================================================== */
-
-query.prototype.last = function(selector) {
-	return new query(this.els[this.els.length - 1]);
-};
-
-/* 
-   #find
-   ========================================================================== */
-
-query.prototype.find = function(selector) {
-	return new query(selector, this.els[0]);
-};
-
-/* 
-   #next
-   ========================================================================== */
-
-query.prototype.next = function() {
-	return new query(this.els[0].nextElementSibling);
-};
-
-/* 
-   #parent
-   ========================================================================== */
-
-query.prototype.parent = function() {
-	return new query(this.els[0].parentNode);
-};
-
-//
-// MANIPULATION
-//
-
-/* 
-   #html
-   ========================================================================== */
-
-query.prototype.html = function(value) {
-
-	if(value) {
-		this.each(function(el) {
-			el.innerHTML = value;
-		});
-		return this;
-	}
-	return this.els[0].innerHTML;
-};
-
-/* 
-   #text
-   ========================================================================== */
-
-query.prototype.text = function(value) {
-	if(value) {
-		this.each(function(el) {
-			el.innerText = value;
-		});
-		return this;
-	}
-	return this.els[0].innerText;
-};
-
-/* 
-   #attr
-   ========================================================================== */
-
-query.prototype.attr = function(name, value) {
-	if(value) {
-		this.each(function(el) {
-			el.setAttribute(name, value);
-		});
-		return this;
-	}
-	return this.els[0].getAttribute(name);
-};
-
-/* 
-   #removeAttr
-   ========================================================================== */
-
-query.prototype.removeAttr = function(name) {
-	if(name) {
-		this.each(function(el) {
-			el.removeAttribute(name);
-		});
-	}
-	return this;
-};
-
-/* 
-   #val
-   ========================================================================== */
-
-query.prototype.val = function(value) {
-	if(value) {
-		this.each(function(el) {
-			el.value = value;
-		});
-		return this;
-	}
-	return this.els[0].value;
-};
-
-/* 
-   #css
-   ========================================================================== */
-
-query.prototype.css = function(name, value) {
-	if(value) {
-		this.each(function(el) {
-			el.style[name] = value;
-		});
-		return this;
-	}
-	return this.els[0].style[name];
-};
-
-/* 
-   #addClass
-   ========================================================================== */
-
-query.prototype.addClass = function(className) {
-	this.each(function(el) {
-        var result = !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
-        if (result === false) {
-            el.className += ' ' + className;
-        }
-	});
-	return this;
-};
-
-/* 
-   #removeClass
-   ========================================================================== */
-
-query.prototype.removeClass = function(className) {
- 	var reg = new RegExp('(\\s|^)'+className+'(\\s|$)');
-	this.each(function(el) {
-		 el.className = el.className.replace(reg, ' ');
-	});
-	return this;
-};
-
-/* 
-   #hasClass
-   ========================================================================== */
-
-query.prototype.hasClass = function(className) {
-	return !!this.els[0].className.match(new RegExp('(\\s|^)'+className+'(\\s|$)'));
-};
-
-/* 
-   #append
-   ========================================================================== */
-
-query.prototype.append = function(el) {
-	this.each(function(parent) {
-		parent.appendChild(el);
-	});
-	return this;
-};
-
-/* 
-   #prepend
-   ========================================================================== */
-
-query.prototype.prepend = function(el) {
-  this.each(function(parent) {
-    parent.insertBefore(el, parent.firstChild);
-  });
-  return this;
-};
-
-/* 
-   query.before
-   ========================================================================== */
-
-query.prototype.before = function(html) {
-	this.each(function(el) {
-		el.insertAdjacentHTML("beforebegin", html);
-	});
-	return this;
-};
-
-/* 
-   #after
-   ========================================================================== */
-
-query.prototype.after = function(html) {
-	this.each(function(el) {
-		el.insertAdjacentHTML("afterend", html);
-	});
-	return this;
-};
-
-/* 
-   #empty
-   ========================================================================== */
-
-query.prototype.empty = function() {
-	this.each(function(el) {
-		el.innerHTML = '';
-	});
-	return this;
-};
-
-/* 
-   #remove
-   ========================================================================== */
-
-query.prototype.remove = function() {
-	this.each(function(el) {	
-		if(el.parentNode) {
-			el.parentNode.removeChild(el);
-		}
-	});
-};
-
-//
-// EVENTS
-//
-
-/* 
-   #on
-   ========================================================================== */
-
-query.prototype.on = function(event, cb) {
-	this.each(function(el) {
-		el.addEventListener(event, cb, false);
-	});
-	return this;
-};
-
-/* 
-   #un
-   ========================================================================== */
-
-query.prototype.un = function(event, cb) {
-	this.each(function(el) {
-		el.removeEventListener(event, cb, false);
-	});
-
-	return this;
-};
-
-//
-// EFFECTS
-//
-
-/* 
-   #show
-   ========================================================================== */
-
-query.prototype.show = function() {
-	this.each(function(el) {
-		el.style.display='';
-	});
-	return this;
-};
-
-/* 
-   #hide
-   ========================================================================== */
-
-query.prototype.hide = function() {
-	this.each(function(el) {
-		el.style.display = 'none';
-	});
-	return this;
-};
-
-//
-// MANIPULATION
-//
-
-/* 
-   #template
-   ========================================================================== */
-
-query.prototype.template = function(data) {
-	this.each(function(el) {
-		el.innerHTML = mvcc.template(el.innerHTML, data);
-	});
-	return this;
-};
-
-// 
-// @public
-// ========================================================================== */
-
-mvcc.query = query;
-
 /* ==========================================================================
    #COM 
    ========================================================================== */
@@ -703,7 +379,7 @@ var render = function(name) {
 
 	for(var index = 0, length = els.length; index < length; index++) {
 
-		var el = new mvcc.query(els[index]);
+		var el = els[index];
 
 		/**
 		 * The init property is called before the component is rendered. 
@@ -728,7 +404,7 @@ var render = function(name) {
 		 */
 
 		if (mvcc.isFunction(component.draw)) { 
-			el.html(mvcc.template(component.draw(el), component)); 
+			el.innerHTML = mvcc.template(component.draw(el), component); 
 		}
 
 		/**
@@ -863,6 +539,31 @@ var call = function(name) {
 };
 
 /* 
+   #path
+   ========================================================================== */
+
+/**
+ * The `path` function returns a value inside the route path.
+ *
+ * @name mvcc.route.path(index)
+ *
+ * @param {number} index
+ *
+ *     The index number.
+ * 
+ * @return {string} 
+ *
+ *     The value.
+ */
+
+var path = function(index) {
+   if(mvcc.isPath(location.hash)) {
+      return location.hash.subString(0, 2).split('/')[index];
+   }
+   return "";
+};
+
+/* 
    #listen
    ========================================================================== */
 
@@ -912,6 +613,7 @@ return {
 	map: map,
 	unmap: unmap,
 	call: call,
+   path: path,
    listen: listen,
    ignore: ignore,
    item: _routes
@@ -1123,16 +825,16 @@ mvcc.route.listen();
 mvcc.com.create({
     init: function (el) {
         var that = this;
-        mvcc.http.get(el.attr('mv-repeat')).then(function (data) {
+        mvcc.http.get(el.getAttribute('mv-repeat')).then(function (data) {
             that.load(el, JSON.parse(data));
         });
     },
     load: function (el, data) {
-        var target = '', template = el.html();
+        var target = '', template = el.innerHTML;
         for (var prop in data) {
             target += mvcc.template(template, data[prop]);
         }
-        el.html(target);
-        el.removeAttr('mv-cloak');
+        el.innerHTML = target;
+        el.removeAttribute('mv-cloak');
     }
 }, 'mv-repeat');

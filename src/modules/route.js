@@ -86,6 +86,31 @@ var call = function(name) {
 };
 
 /* 
+   #path
+   ========================================================================== */
+
+/**
+ * The `path` function returns a value inside the route path.
+ *
+ * @name mvcc.route.path(index)
+ *
+ * @param {number} index
+ *
+ *     The index number.
+ * 
+ * @return {string} 
+ *
+ *     The value.
+ */
+
+var path = function(index) {
+   if(mvcc.isPath(location.hash)) {
+      return location.hash.subString(0, 2).split('/')[index];
+   }
+   return "";
+};
+
+/* 
    #listen
    ========================================================================== */
 
@@ -135,6 +160,7 @@ return {
 	map: map,
 	unmap: unmap,
 	call: call,
+   path: path,
    listen: listen,
    ignore: ignore,
    item: _routes

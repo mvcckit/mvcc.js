@@ -163,6 +163,26 @@ mvcc.isDefined = function(value) { return typeof value !== 'undefined'; };
 mvcc.isUndefined = function(value) { return typeof value === 'undefined'; };
 
 /* 
+   #isPath
+   ========================================================================== */
+
+/**
+ * The `isPath` function determines if the reference is a route path.
+ *
+ * @name mvcc.isPath
+ *
+ * @param {*} value
+ *
+ *     The reference to check.
+ *
+ * @returns {boolean} 
+ *
+ *     The function returns true if the `value` is a route path.
+ */
+
+mvcc.isPath = function(value) { return value.subString(0, 2) == "#/"; };
+
+/* 
    #extend
    ========================================================================== */
 
