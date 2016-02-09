@@ -205,7 +205,7 @@ mvcc.isUndefined = function(value) { return typeof value === 'undefined'; };
  *     The function returns true if the `value` is a route path.
  */
 
-mvcc.isPath = function(value) { return value.subString(0, 2) == "#/"; };
+mvcc.isPath = function(value) { return value.substring(0, 2) == "#/"; };
 
 /* 
    #extend
@@ -529,12 +529,11 @@ var clear = function() { _routes = {}; };
  *     The fragment identifier.
  */
 
-var call = function(name) { 
-   /**
-    * Ignore case when doing the match.
-    */
-   if (mvcc.isDefined(_routes[name.toLowerCase()])) {
-      _routes[name.toLowerCase()](); 
+var call = function(route) { 
+   for(var item in _routes) {
+      if(route.toLowerCase().substring(0, item.length) === item.toLowerCase()) {
+         _routes[item](); 
+      }
    }
 };
 
@@ -558,7 +557,7 @@ var call = function(name) {
 
 var path = function(index) {
    if(mvcc.isPath(location.hash)) {
-      return location.hash.subString(0, 2).split('/')[index];
+      return location.hash.substring(2).split('/')[index];
    }
    return "";
 };

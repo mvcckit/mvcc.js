@@ -21,7 +21,7 @@ Once you have your environment setup, run:
 			<script>
 				mvcc.com.create({
 					draw: function(el) {
-						return "Hello World";
+						return '<h1>Hello World</h1>';
 					}
 				}, 'say-hello');
 

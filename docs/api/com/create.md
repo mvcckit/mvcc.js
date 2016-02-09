@@ -17,13 +17,10 @@ mvcc.route.create(name, fn);
 
 ### Properties
 
-The `fn` function has three reserved properties. 
+The `fn` function has three reserved properties. The element is passed to each.
 
 | Property     | Type       | Details                                  |
 | ------------ | ---------- | ---------------------------------------- |
 | init         | `Function` | Called before the component is rendered. | 
 | draw         | `Function` | Called when the component is rendering.  |
 | done         | `Function` | Called after the component is rendered.  |
-
-> The  `mvcc.query` wrapped element is passed in an argument to each.
-

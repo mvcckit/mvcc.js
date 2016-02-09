@@ -180,7 +180,7 @@ mvcc.isUndefined = function(value) { return typeof value === 'undefined'; };
  *     The function returns true if the `value` is a route path.
  */
 
-mvcc.isPath = function(value) { return value.subString(0, 2) == "#/"; };
+mvcc.isPath = function(value) { return value.substring(0, 2) == "#/"; };
 
 /* 
    #extend
