@@ -37,7 +37,7 @@ The `draw` function returns a string containing the markup of the component.
 	
 **render function**
 
-The `render` function renders the component in a tag or attribute with the same name.
+The `render` function renders the component on a tag with the same name:
 	
 	<html>
 		<body>
@@ -55,6 +55,10 @@ The `render` function renders the component in a tag or attribute with the same 
 	    	</script>
 		</body>
 	</html>
+
+You can also render the component on a tag that has an attribute with the same name:
+
+	<div say-hello></div>
 
 **renderAll function**
 
@@ -136,7 +140,8 @@ Script Templates can be used for components that contain a lot of markup.
 			        {{greet}} {{name}}
 			    </h1>
 		    </script>
-		    
+
+		    <script src="/scripts/mvcc.full.js"></script>
 			<script>
 				mvcc.com.create({
 				    name: 'World',
@@ -167,6 +172,7 @@ The `init` function can be used to initialize a component and setup listeners.
 			    </h1>
 		    </script>
 		    
+		    <script src="/scripts/mvcc.full.js"></script>
 			<script>
 				mvcc.com.create({
 				    name: 'World',
