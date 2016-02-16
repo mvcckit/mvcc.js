@@ -1,15 +1,33 @@
 <html>
 	<body>
-		<app-test>aaa</app-test>
+		<say-hello>aaa</say-hello>
 
 		<script src="../builds/mvcc.full.js"></script>
-		<script>
-			mvcc.route.map('#/home/index', function() {
-				alert('you clicked home/index and passed:' + mvcc.route.path(2));
-			});
-			mvcc.route.map('#/home/create', function() {
-				alert('you clicked home/create and passed:' + mvcc.route.path(2));
-			});
-		</script>
+
+			<script id="sayHello" type="text/template">
+			    <h1>
+			        {{greet}} {{name}}
+			    </h1>
+		    </script>
+
+			<script>
+				mvcc.com.create({
+				    name: 'World',
+				    greet: function() {
+				        return "Hello";
+				    },		
+				    init: function(el) {
+				        el.addEventListener('click', function() {
+				           console.log('You clicked me.') ;
+				        });
+				    },
+					draw: function() {
+						return document.getElementById("sayHello").innerHTML;
+					}
+				}, 'say-hello');
+
+				mvcc.com.render('say-hello');
+			</script>
+			
 	</body>
 </html>
