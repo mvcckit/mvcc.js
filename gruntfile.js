@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 					'src/modules/core.js',		
 					'src/modules/com.js',	
 					'src/modules/route.js',	
-					'src/modules/http.js',						
+					'src/modules/http.js',	
 				    'src/mvcc.suffix.js',
 				    'src/directives/*.js'
 				],

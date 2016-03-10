@@ -6,6 +6,7 @@
 
 The `core` module contains top-level functions essential to the framework.
 
+* [concat](core/concat.md)
 * [extend](core/extend.md)
 * [isArray](core/isArray.md)
 * [isBoolean](core/isBoolean.md)

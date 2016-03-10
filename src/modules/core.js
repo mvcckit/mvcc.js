@@ -183,6 +183,22 @@ mvcc.isUndefined = function(value) { return typeof value === 'undefined'; };
 mvcc.isPath = function(value) { return value.substring(0, 2) == "#/"; };
 
 /* 
+   #concat
+   ========================================================================== */
+
+/**
+ * The `concat` function concatenates multiple arguments and returns a String.
+ *
+ * @name mvcc.concat
+ *
+ * @param {Array} args
+ *
+ *     The strings to concatenate.
+ */
+
+mvcc.concat = function() { return Array.prototype.slice.call(arguments).join(""); };
+
+/* 
    #extend
    ========================================================================== */
 

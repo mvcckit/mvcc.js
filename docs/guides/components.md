@@ -158,6 +158,33 @@ Script Templates can be used for components that contain a lot of markup.
 		</body>
 	</html>
 
+Alternatively, you can also use the `mvcc.concat` function.
+
+	<html>
+		<body>
+			<say-hello> </say-hello>
+
+		    <script src="/scripts/mvcc.full.js"></script>
+			<script>
+				mvcc.com.create({
+				    name: 'World',
+				    greet: function() {
+				        return "Hello";
+				    },				    
+					draw: function() {
+						return mvcc.concat(
+							"<h1>",
+								"{{greet}} {{name}}",
+							"</h1>"
+						)
+					}
+				}, 'say-hello');
+
+				mvcc.com.render('say-hello');
+			</script>
+		</body>
+	</html>
+
 ## Event Handling
 
 The `init` function can be used to initialize a component and setup listeners.

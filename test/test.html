@@ -8,25 +8,16 @@
 			    <h1>
 			        {{greet}} {{name}}
 			    </h1>
-		    </script>
+		    </script>d
 
 			<script>
-				mvcc.com.create({
-				    name: 'World',
-				    greet: function() {
-				        return "Hello";
-				    },		
-				    init: function(el) {
-				        el.addEventListener('click', function() {
-				           console.log('You clicked me.') ;
-				        });
-				    },
-					draw: function() {
-						return document.getElementById("sayHello").innerHTML;
+				mvcc.controller.create({
+					init: function() {
+						alert('it worked');
 					}
-				}, 'say-hello');
+				},'eric');
 
-				mvcc.com.render('say-hello');
+				mvcc.controller.init('eric');
 			</script>
 			
 	</body>
