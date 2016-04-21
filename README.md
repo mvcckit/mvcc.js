@@ -4,7 +4,7 @@
 
 The javascript used for internal Moraine Valley Community College web applications. 
 
-* [Guides](docs/guides.md)
+* [Tutorials](docs/tutorials/tutorials.md)
 * [API Documentation](docs/api/api.md)
 
 ## Building mvcc.js
