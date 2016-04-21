@@ -1,4 +1,4 @@
 # Guides
 
-* [Components Guide](guides/com.md)
-* [Models Guide](guides/model.md)
+* [Components Guide](/docs/guides/com.md)
+* [Models Guide](/docs/guides/model.md)
