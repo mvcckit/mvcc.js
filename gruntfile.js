@@ -3,12 +3,14 @@ module.exports = function(grunt) {
    		concat: {
 			js: {
 				src: [
-					'src/mvcc.banner.js',
 					'src/mvcc.prefix.js',
-					'src/modules/core.js',		
-					'src/modules/com.js',	
-					'src/modules/route.js',	
+					'src/modules/core.js',	
 					'src/modules/http.js',	
+					'src/modules/com.js',	
+					'src/modules/model.js',	
+					'src/modules/collection.js',											
+					'src/modules/route.js',	
+					'src/modules/request.js',						
 				    'src/mvcc.suffix.js',
 				    'src/directives/*.js'
 				],

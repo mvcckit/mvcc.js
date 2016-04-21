@@ -7,17 +7,7 @@
    ========================================================================== */
 
 /**
- * The `isString` function determines if the reference is a `String`.
- *
- * @name mvcc.isString
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is a `String`.
+ * Determines if a reference is a string.
  */
 
 mvcc.isString = function(value) { return typeof value === 'string'; };
@@ -27,17 +17,7 @@ mvcc.isString = function(value) { return typeof value === 'string'; };
    ========================================================================== */
 
 /**
- * The `isNumber` function determines if the reference is a `Number`.
- *
- * @name mvcc.isNumber
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is a `Number`.
+ * Determines if a reference is a number.
  */
 
 mvcc.isNumber = function(value) { return typeof value === 'number'; };
@@ -47,17 +27,7 @@ mvcc.isNumber = function(value) { return typeof value === 'number'; };
    ========================================================================== */
 
 /**
- * The `isBoolean` function determines if the reference is a `Boolean`.
- *
- * @name mvcc.isBoolean
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is a `Boolean`.
+ * Determines if a reference is a boolean.
  */
 
 mvcc.isBoolean = function(value) { return typeof value === 'boolean'; };
@@ -67,17 +37,7 @@ mvcc.isBoolean = function(value) { return typeof value === 'boolean'; };
    ========================================================================== */
 
 /**
- * The `isArray` function determines if the reference is an `Array`.
- *
- * @name mvcc.isArray
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is an `Array`.
+ * Determines if a reference is an Array.
  */
 
 mvcc.isArray = function(value) { return value.constructor === Array; };
@@ -87,17 +47,7 @@ mvcc.isArray = function(value) { return value.constructor === Array; };
    ========================================================================== */
 
 /**
- * The `isFunction` function determines if the reference is a `Function`.
- *
- * @name mvcc.isFunction
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is a `Function`.
+ * Determines if a reference is a Function.
  */
 
 mvcc.isFunction = function(value) { return typeof value === 'function'; };
@@ -107,37 +57,27 @@ mvcc.isFunction = function(value) { return typeof value === 'function'; };
    ========================================================================== */
 
 /**
- * The `isObject` function determines if the reference is an `Object`.
- *
- * @name mvcc.isObject
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is an `Object`.
+ * Determines if a reference is an Object.
  */
 
 mvcc.isObject = function(value) { return typeof value === 'object'; };
+
+/* 
+   #isDate
+   ========================================================================== */
+
+/**
+ * Determines if a reference is a Date.
+ */
+
+mvcc.isDate = function(value) { return Object.prototype.toString.call(value) === '[object Date]'; };
 
 /* 
    #isDefined
    ========================================================================== */
 
 /**
- * The `isDefined` function determines if the reference is defined.
- *
- * @name mvcc.isDefined
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is defined.
+ * Determines if a reference is defined.
  */
 
 mvcc.isDefined = function(value) { return typeof value !== 'undefined'; };
@@ -147,53 +87,17 @@ mvcc.isDefined = function(value) { return typeof value !== 'undefined'; };
    ========================================================================== */
 
 /**
- * The `isUndefined` function determines if the reference is undefined.
- *
- * @name mvcc.isUndefined
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is undefined.
+ * Determines if a reference is undefined.
  */
 
 mvcc.isUndefined = function(value) { return typeof value === 'undefined'; };
-
-/* 
-   #isPath
-   ========================================================================== */
-
-/**
- * The `isPath` function determines if the reference is a route path.
- *
- * @name mvcc.isPath
- *
- * @param {*} value
- *
- *     The reference to check.
- *
- * @returns {boolean} 
- *
- *     The function returns true if the `value` is a route path.
- */
-
-mvcc.isPath = function(value) { return value.substring(0, 2) == "#/"; };
 
 /* 
    #concat
    ========================================================================== */
 
 /**
- * The `concat` function concatenates multiple arguments and returns a String.
- *
- * @name mvcc.concat
- *
- * @param {Array} args
- *
- *     The strings to concatenate.
+ * Concatenates arguments into a String.
  */
 
 mvcc.concat = function() { return Array.prototype.slice.call(arguments).join(""); };
@@ -203,21 +107,7 @@ mvcc.concat = function() { return Array.prototype.slice.call(arguments).join("")
    ========================================================================== */
 
 /**
- * The `extend` function copies properties from the `source` object to `target`
- *
- * @name mvcc.extend
- *
- * @param {Object} target
- *
- *     The target object.
- *
- * @param {Object} source
- *
- *     The source object.
- *
- * @returns {Object}
- *
- *     The reference to `target`.
+ * Copies properties from one object to another.
  */
 
 mvcc.extend = function(target, source) {
@@ -234,21 +124,7 @@ mvcc.extend = function(target, source) {
    ========================================================================== */
 
 /**
- * The `template` function replaces handlebars in a string with object values.
- *
- * @name mvcc.extend
- *
- * @param {String} content
- *
- *     The string containing the handlebars.
- *
- * @param {Object} values
- *
- *     The object.
- *
- * @returns {String}
- *
- *     The content with the handlebars replaced.
+ * Replaces handlebars in a string from an object.
  */
 
 mvcc.template = function(content, values) {

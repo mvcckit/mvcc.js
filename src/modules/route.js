@@ -1,31 +1,31 @@
 /* ==========================================================================
-   #COM 
+   #ROUTE
    ========================================================================== */
 
 mvcc.route = (function () {
 
 /**
- * The components collection
+ * The route collection
  */
 
 var _routes = {};
+
+/* 
+   #dispatch
+   ========================================================================== */
+
+/**
+ * Used by the listen and ignore function to disbatch routes.
+ */
+
+var dispatch = function() { call(location.hash); };
 
 /* 
    #map
    ========================================================================== */
 
 /**
- * The `map` function creates a new route in the routes collection.
- *
- * @name mvcc.route.create
- *
- * @param {string} name
- *
- *     The fragment identifier.
- *
- * @param {function} fn
- *
- *     The callback function.
+ * Adds a route to the route collection.
  */
 
 var map = function(name, fn) { _routes[name] = fn; };
@@ -35,19 +35,13 @@ var map = function(name, fn) { _routes[name] = fn; };
    ========================================================================== */
 
 /**
- * The `unmap` function removes a route from the routes collection.
- *
- * @name mvcc.route.remove
- *
- * @param {string} name
- *
- *     The fragment identifier.
+ * Removes a route from the route collection.
  */
 
 var unmap = function(name) { 
-   if (mvcc.isDefined(_routes[name])) {
-      delete _routes[name]; 
-   }
+    if(mvcc.isDefined(_routes[name])) {
+        delete _routes[name]; 
+    }
 };
 
 /* 
@@ -55,58 +49,26 @@ var unmap = function(name) {
    ========================================================================== */
 
 /**
- * The `clear` function removes all routes from the route collection.
- *
- * @name mvcc.route.clear
+ * Removes all routes from the route collection.
  */
 
 var clear = function() { _routes = {}; };
+
 
 /* 
    #call
    ========================================================================== */
 
 /**
- * The `call` function executes a route in the route collection.
- *
- * @name mvcc.route.call
- *
- * @param {string} name
- *
- *     The fragment identifier.
+ * Calls a route's callback function.
  */
 
-var call = function(route) { 
-   for(var item in _routes) {
-      if(route.toLowerCase().substring(0, item.length) === item.toLowerCase()) {
-         _routes[item](); 
-      }
-   }
-};
-
-/* 
-   #path
-   ========================================================================== */
-
-/**
- * The `path` function returns a value inside the route path.
- *
- * @name mvcc.route.path(index)
- *
- * @param {number} index
- *
- *     The index number.
- * 
- * @return {string} 
- *
- *     The value.
- */
-
-var path = function(index) {
-   if(mvcc.isPath(location.hash)) {
-      return location.hash.substring(2).split('/')[index];
-   }
-   return "";
+var call = function(route) {
+	for(var item in _routes) {
+		if(route.toLowerCase().substring(0, item.length) === item.toLowerCase()) {
+			_routes[item]();
+		}
+	}
 };
 
 /* 
@@ -114,14 +76,12 @@ var path = function(index) {
    ========================================================================== */
 
 /**
- * The `listen` function watches the url for changes and calls routes.
- *
- * @name mvcc.route.listen
+ * Listen for route changes.
  */
 
 var listen = function() { 
-   window.addEventListener('load', dispatch);
-   window.addEventListener('hashchange', dispatch);
+    window.addEventListener('load', dispatch);
+    window.addEventListener('hashchange', dispatch);
 };
 
 /* 
@@ -129,40 +89,26 @@ var listen = function() {
    ========================================================================== */
 
 /**
- * The `ignore` function stops watching the url for changes.
- *
- * @name mvcc.route.listen
+ * Stop listening for route changes.
  */
 
 var ignore = function() { 
-   window.removeEventListener('load', dispatch);
-   window.removeEventListener('hashchange', dispatch);
+    window.removeEventListener('load', dispatch);
+    window.removeEventListener('hashchange', dispatch);
 };
-
-/* 
-   #dispatch
-   ========================================================================== */
-
-/**
- * The `dispatch` function dispatches the route without query parameters.
- *
- * @name mvcc.route.dispatch
- */
-
-var dispatch = function() { call(location.hash.split("?")[0]); };
 
 /* 
    exports
    ========================================================================== */
 
 return {
+	item: _routes,
 	map: map,
 	unmap: unmap,
+	clear: clear,
 	call: call,
-   path: path,
-   listen: listen,
-   ignore: ignore,
-   item: _routes
+	listen: listen,
+	ignore: ignore
 };
 
-})();
+})();	

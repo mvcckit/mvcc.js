@@ -1,5 +1,5 @@
 /* ==========================================================================
-   #HTTP 
+   #HTTP
    ========================================================================== */
 
 mvcc.http = (function () {
@@ -9,75 +9,101 @@ mvcc.http = (function () {
    ========================================================================== */
 
 /**
- * The `request` function executes a http request.
- *
- * @name mvcc.http.request
- *
- * @param {Object} options.
- *
- *     The request options.
+ * Executes a http request.
  */
 
 var request = function(options) {
 	var xhr = new window.XMLHttpRequest();
 
-	xhr.open(
-		options.method,
-		options.url,
-		true,
-		options.username,
-		options.password
-	);
-
+	xhr.open(options.method, options.url, true, options.username, options.password);
+	
 	return {
 		then: function(success, failure) {
 			xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                    	if(mvcc.isFunction(success)) {
-                       		success(xhr.responseText);
-                    	}
-                    }
-                    else {
-                    	if(mvcc.isFunction(failure)) {
-                       		failure(xhr.statusText);
-                      	}
-                    }
-                }
-            };
-			xhr.send(options.data);
+				if (xhr.readyState == 4) {
+					if(xhr.status == 200) {
+						if(mvcc.isFunction(success)) {
+							success(xhr.responseText);
+						}
+					}
+				}
+				else {
+					if(mvcc.isFunction(failure)) {
+						failure(xhr.statusText);
+					}
+				}
+			};
+         xhr.send(options.data);
 		}
 	};
 };
 
- /* 
+/* 
    #get
    ========================================================================== */
 
 /**
- * The get function executes a http get request.
- *
- * @name mvcc.http.get
- *
- * @param {String} url.
- *
- *     The url of the page or file.
- *
- * @param {Object} options.
- *
- *     The options to use in the request.
+ * Executes a http GET request.
  */
 
 var get = function(url, options) {
-   	options = options || {};	
-	options.method = "GET";	
-	options.url = url;
-
+	options = { method: 'GET', url: url } || options;
 	return {
 		then: function(success, failure) {
 			mvcc.http.request(options).then(success, failure);
 		}
 	};
+};
+
+/* 
+   #del
+   ========================================================================== */
+
+/**
+ * Executes a http DELETE request.
+ */
+
+var del = function(url, options) {
+   options = { method: 'DELETE', url: url} || options;
+   return {
+      then: function(success, failure) {
+         mvcc.http.request(options).then(success, failure);
+      }
+   };
+};
+
+/* 
+   #head
+   ========================================================================== */
+
+/**
+ * Executes a http HEAD request.
+ */
+
+var head = function(url, options) {
+	options = { method: 'HEAD', url: url } || options;
+	return {
+		then: function(success, failure) {
+			mvcc.http.request(options).then(success, failure);
+		}
+	};
+};
+
+/* 
+   #jsonp
+   ========================================================================== */
+
+/**
+ * Executes a http JSONP request.
+ */
+
+var jsonp = function(url, options) {
+   options = { method: 'JSONP', url: url} || options;
+   return {
+      then: function(success, failure) {
+         mvcc.http.request(options).then(success, failure);
+      }
+   };
 };
 
 /* 
@@ -85,34 +111,50 @@ var get = function(url, options) {
    ========================================================================== */
 
 /**
- * TThe get function executes a http post request.
- *
- * @name mvcc.http.post
- *
- * @param {String} url.
- *
- *     The url of the page or file.
- *
- * @param {*} data.
- *
- *     The data to send.
- * 
- * @param {Object} options.
- *
- *     The options to use in the request.
+ * Executes a http POST request.
  */
 
 var post = function(url, data, options) {
-   	options = options || {};	
-	options.method = "POST";	
-	options.url = url;
-	options.data = data;
+   options = { method: 'POST', url: url, data: data} || options;
+   return {
+      then: function(success, failure) {
+         mvcc.http.request(options).then(success, failure);
+      }
+   };
+};
 
-	return {
-		then: function(success, failure) {
-			mvcc.http.request(options).then(success, failure);
-		}
-	};
+/* 
+   #put
+   ========================================================================== */
+
+/**
+ * Executes a http PUT request.
+ */
+
+var put = function(url, data, options) {
+   options = { method: 'PUT', url: url, data: data} || options;
+   return {
+      then: function(success, failure) {
+         mvcc.http.request(options).then(success, failure);
+      }
+   };
+};
+
+/* 
+   #patch
+   ========================================================================== */
+
+/**
+ * Executes a http PATCH request.
+ */
+
+var patch = function(url, data, options) {
+   options = { method: 'PATCH', url: url, data: data} || options;
+   return {
+      then: function(success, failure) {
+         mvcc.http.request(options).then(success, failure);
+      }
+   };
 };
 
 /* 
@@ -120,37 +162,19 @@ var post = function(url, data, options) {
    ========================================================================== */
 
 /**
- * The `include` function loads external content in a container.
- *
- * @name mvcc.util.include
- *
- * @param {string} url
- *
- *     The URL of the page or file.
- *
- * @param {string} selector
- *
- *     The selector to find the container. 
- *
- * @param {function} [success]
- *
- *     The success callback.
- *
- * @param {function} [failure]
- *
- *     The failure callback.
+ * Include external content in a container.
  */
 
-var include = function(url, selector, success) {
+var include = function(url, selector, success, failure) {
    mvcc.http.get(url).then(function(data) {
-		document.querySelector(selector).innerHTML = data;
-      	if(mvcc.isFunction(success)) {
-        	   success();
-      	}  
+      document.querySelector(selector).innerHTML = data;
+      if(mvcc.isFunction(success)) {
+         success();
+      }  
    }, function() {
-         if(mvcc.isFunction(failure)) {
-            failure();
-         }  
+      if(mvcc.isFunction(failure)) {
+         failure();
+      }  
    });
 };
 
@@ -161,8 +185,13 @@ var include = function(url, selector, success) {
 return {
 	request: request,
 	get: get,
+	del: del,
+	head: head,
+	jsonp: jsonp,
 	post: post,
+	put: put,
+	patch: patch,
 	include: include
 };
 
-})();
+})();	

@@ -2,7 +2,7 @@
 
 # mvcc.js
 
-The javascript used for internal Moraine Valley Community College web applications. It is still under development.
+The javascript used for internal Moraine Valley Community College web applications. 
 
 * [Guides](docs/guides/guides.md)
 * [API Documentation](docs/api/api.md)
@@ -21,10 +21,11 @@ Once you have your environment setup, run:
 
 			<script>
 				mvcc.com.create({
+					selector: 'say-hello'
 					draw: function(el) {
 						return '<h1>Hello World</h1>';
 					}
-				}, 'say-hello');
+				}, 'hello');
 
 				mvcc.com.render('say-hello');
 			</script>

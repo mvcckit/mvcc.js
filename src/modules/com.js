@@ -1,57 +1,25 @@
 /* ==========================================================================
-   #COM 
+   #COM
    ========================================================================== */
 
 mvcc.com = (function () {
 
 /**
- * The components collection
+ * The component collection
  */
 
 var _components = {};
-
-/* 
-   #compiler
-   ========================================================================== */
-
-/**
- * The `compiler` function returns the multiple selectors for a component.
- *
- * @name mvcc.com.compiler
- *
- * @param {string} name
- *
- *     The component name.
- *
- * @returns {string}
- *
- *     The selector string.
- */
-
-var compiler = function(name) {	return '[data-' + name + '],[' + name + '],' + name; };
 
 /* 
    #create
    ========================================================================== */
 
 /**
- * The `create` function creates a new component in the components collection.
- *
- * @name mvcc.com.create
- *
- * @param {function} fn
- *
- *     The callback function.
- *
- * @param {string} name
- *
- *     The component name.
+ * Adds a component to the component collection.
  */
 
 var create = function(fn, name) { 
-	_components[name] = mvcc.extend(fn, {
-		_selector: compiler(name)
-	}); 
+    _components[name] = fn;
 };
 
 /* 
@@ -59,19 +27,13 @@ var create = function(fn, name) {
    ========================================================================== */
 
 /**
- * The `remove` function removes a component from the components collection.
- *
- * @name mvcc.com.remove
- *
- * @param {string} name
- *
- *     The component name. 
+ * Removes a component from the component collection.
  */
 
 var remove = function(name) { 
-	if(mvcc.isDefined(_components[name])) {
-		delete _components[name]; 
-	}
+    if(mvcc.isDefined(_components[name])) {
+        delete _components[name]; 
+    }
 };
 
 /* 
@@ -79,78 +41,67 @@ var remove = function(name) {
    ========================================================================== */
 
 /**
- * The `clear` function removes all components from the components collection.
- *
- * @name mvcc.com.clear
+ * Removes all components from the component collection.
  */
 
 var clear = function() { _components = {}; };
+
+/* 
+   #contains
+   ========================================================================== */
+
+/**
+ *  Determines if the component collection contains a component.
+ */
+
+var contains = function(key) { return mvcc.isDefined(_components[key]); };
 
 /* 
    #render
    ========================================================================== */
 
 /**
- * The render function renders a component to the page.
- *
- * @name mvcc.com.render
- *
- * @param {string} name
- *
- *     The component name.
+ * Renders a component on the webpage.
  */
 
 var render = function(name) { 
-		
-	var component = _components[name], els = document.querySelectorAll(component._selector);
 
-	/**
-	 * Iterate through the matches.
-	 */
+    var component = _components[name], els = document.querySelectorAll(component.selector);
 
-	for(var index = 0, length = els.length; index < length; index++) {
+    /**
+     * Iterate through the matches.
+     */
 
-		var el = els[index];
+    for(var index = 0, length = els.length; index < length; index++) {
 
-		/**
-		 * The init property is called before the component is rendered. 
-		 *
-		 * @name component.init
-		 */
+        var el = els[index];
 
-		if (mvcc.isFunction(component.init)) { 
-			component.init(el); 
-		}
+        /**
+         * Init function
+         */
 
-		/**
-		 * The draw property is called when the component is rendered. 
-		 *
-		 * @name component.draw
-		 *
-		 * @property {function} component.draw
-		 *
-		 * @returns {string}
-		 *
-		 *     Returns a string containing the HTML. 
-		 */
+        if (mvcc.isFunction(component.init)) { 
+            component.init(el); 
+        }
 
-		if (mvcc.isFunction(component.draw)) { 
-			el.innerHTML = mvcc.template(component.draw(el), component); 
-		}
+        /**
+         * Draw function
+         */
 
-		/**
-		 * The done property is called after the component is rendered. 
-		 *
-		 * @name component.done
-		 *
-		 * @property {function} component.done
-		 */
+        if (mvcc.isFunction(component.draw)) { 
+            el.innerHTML = mvcc.template(component.draw(el), component); 
+        }
 
-		if (mvcc.isFunction(component.done)) { 
-			component.done(el); 
-		}
+        /**
+         * Done function
+         */
 
-	}
+        if (mvcc.isFunction(component.done)) { 
+            component.done(el); 
+        }
+
+   }
+
 };
 
 /* 
@@ -158,15 +109,13 @@ var render = function(name) {
    ========================================================================== */
 
 /**
- * The renderAll function renders all components to the page.
- *
- * @name mvcc.com.renderAll
+ * Renders all components to the page.
  */
 
-var renderAll = function() {	
-	for(var name in _components) {
-		render(name);
-	}
+var renderAll = function() {  
+    for(var name in _components) {
+        render(name);
+    }
 };
 
 /* 
@@ -174,11 +123,13 @@ var renderAll = function() {
    ========================================================================== */
 
 return {
-	create: create,
-	remove: remove,
-	render: render,
-	renderAll: renderAll,
-	item: _components
+    item: _components,
+    create: create,
+    remove: remove,
+    clear: clear,
+    contains: contains,
+    render: render,
+    renderAll: renderAll
 };
 
-})();
+})();	
