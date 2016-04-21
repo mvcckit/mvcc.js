@@ -12,7 +12,6 @@
 * [isDefined](core/isDefined.md)
 * [isFunction](core/isFunction.md)
 * [isNumber](core/isNumber.md)
-* [isPath](core/isPath.md)
 * [isObject](core/isObject.md)
 * [isString](core/isString.md)
 * [isUndefined](core/isUndefined.md)
@@ -67,3 +66,4 @@
 ## Directives
 
 * [mv-include](directives/mv-include.md)
+* [mv-template](directives/mv-template.md)
