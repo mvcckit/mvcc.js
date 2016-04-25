@@ -1,4 +1,4 @@
-# Components Guide
+# Building a Component
 
 ## Create Function
 

@@ -1,4 +1,4 @@
-# Models Guide
+# Building a Model
 
 ## Creating a Model
 
