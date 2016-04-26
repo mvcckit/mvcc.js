@@ -1,3 +1,5 @@
+> This is obsolete. Use the [mvcc.js](https://github.com/mvcckit/mvcc.ts) repro for new projects.
+
 ![logo](docs/img/logo.png)
 
 # mvcc.js
