@@ -1,6 +1,6 @@
-> This is obsolete. Use the [mvcc.js](https://github.com/mvcckit/mvcc.ts) repro for new projects.
-
 ![logo](docs/img/logo.png)
+
+> This is obsolete. Use the new and improved [mvcc.ts](https://github.com/mvcckit/mvcc.ts) framework for new projects.
 
 # mvcc.js
 
